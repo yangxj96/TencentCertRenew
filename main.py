@@ -4,6 +4,7 @@ from datetime import datetime
 
 import cert
 
+# 最小剩余时间,最小剩余多少天了需要重新部署
 _countdown = 1
 
 if __name__ == '__main__':
