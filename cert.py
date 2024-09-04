@@ -20,7 +20,7 @@ _deploy_type = "nginx"
 _client = ssl_client.SslClient(credential.Credential(_tencnet_secret_id, _tencnet_secret_key), 'ap-guangzhou')
 
 
-def cert_get_list():
+def get_list():
     """
     获取SSL证书列表
     :return: 返回第一个状态为1的证书ID
@@ -42,7 +42,7 @@ def cert_get_list():
         return None
 
 
-def cert_get_info(_certificate_id):
+def get_info(_certificate_id):
     """
     获取证书详情
     :param _certificate_id: 证书ID
@@ -54,7 +54,7 @@ def cert_get_info(_certificate_id):
     return response.to_json_string()
 
 
-def cert_create():
+def create():
     """
     申请证书
     :return: 证书ID
@@ -67,7 +67,7 @@ def cert_create():
     return json.loads(response.to_json_string())["CertificateId"]
 
 
-def cert_download(_certificate_id):
+def download(_certificate_id):
     """
     证书下载接口,获取证书zip文件的base64编码
     :param _certificate_id:
@@ -79,7 +79,7 @@ def cert_download(_certificate_id):
     return response.to_json_string()
 
 
-def cert_push_service(cert_zip_file_base64):
+def push_server(cert_zip_file_base64):
     """
     base64转文件且上传到服务器
     :param cert_zip_file_base64: 证书zip文件的base64格式
