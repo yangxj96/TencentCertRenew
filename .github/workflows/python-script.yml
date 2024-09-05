@@ -6,15 +6,24 @@ on:
 jobs:
   run-python-script:
     runs-on: ubuntu-latest
+    env:
+      DOMAIN: ${{ secrets.DOMAIN }}
+      SERVICE_HOSTNAME: ${{ secrets.SERVICE_HOSTNAME }}
+      SERVICE_PASSWORD: ${{ secrets.SERVICE_PASSWORD }}
+      SERVICE_PORT: ${{ secrets.SERVICE_PORT }}
+      SERVICE_USERNAME: ${{ secrets.SERVICE_USERNAME }}
+      TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
+      TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
+      UPLOAD_PATH_PREFIX: ${{ secrets.UPLOAD_PATH_PREFIX }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run Python Script
-      run: python main.py
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run Python Script
+        run: python main.py
