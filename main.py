@@ -37,16 +37,9 @@ if __name__ == '__main__':
             # 如果证书申请下来了,则跳出死循环,进入下一步,进行证书部署
             if int(_cert["Status"]) == 1:
                 break
-            time.sleep(15)
+            time.sleep(20)
     if _deploy:
         print("部署证书")
         b64 = json.loads(cert.download(certificate_id))["Content"]
         cert.push_server(b64)
-        tt = 1
-        while True:
-            print('等待五秒')
-            tt = tt+1
-            if tt >= 2:
-                break
-            time.sleep(10)
     print("脚本执行结束")
