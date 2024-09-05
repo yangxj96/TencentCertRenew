@@ -5,7 +5,7 @@ import paramiko
 _domain = os.environ.get("DOMAIN")
 _remote_path_prefix = os.environ.get("UPLOAD_PATH_PREFIX")
 _service_hostname = os.environ.get("SERVICE_HOSTNAME")
-_service_port: int | None = os.environ.get("SERVICE_PORT")
+_service_port: int = int(os.environ.get("SERVICE_PORT"))
 _service_username = os.environ.get("SERVICE_USERNAME")
 _service_password = os.environ.get("SERVICE_PASSWORD")
 
