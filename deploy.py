@@ -24,7 +24,7 @@ def deploy_nginx(temp_dir):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
     ssh.connect(_service_hostname, _service_port, _service_username, _service_password)
-    ssh.exec_command("docker stop ca3b2c92de11")
+    ssh.exec_command("docker restart ca3b2c92de11")
     ssh.close()
 
 

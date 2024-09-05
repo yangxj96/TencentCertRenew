@@ -42,4 +42,11 @@ if __name__ == '__main__':
         print("部署证书")
         b64 = json.loads(cert.download(certificate_id))["Content"]
         cert.push_server(b64)
+        tt = 1
+        while True:
+            print('等待五秒')
+            tt = tt+1
+            if tt >= 2:
+                break
+            time.sleep(10)
     print("脚本执行结束")
