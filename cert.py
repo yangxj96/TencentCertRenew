@@ -4,11 +4,12 @@ import os
 import tempfile
 import zipfile
 import deploy
+import dotenv
 
 from tencentcloud.common import credential
 from tencentcloud.ssl.v20191205 import ssl_client, models
 
-
+dotenv.load_dotenv()
 # 环境定义
 _domain = os.environ.get("DOMAIN")
 _tencnet_secret_id = os.environ.get("TENCENT_SECRET_ID")
@@ -37,7 +38,7 @@ def get_list():
     else:
         if type(_certificates) is list:
             for _item in _certificates:
-                if _item["Status"] == "1":
+                if _item["Status"] == 1:
                     return _item["CertificateId"]
         return None
 

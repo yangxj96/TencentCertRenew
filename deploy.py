@@ -1,7 +1,8 @@
 import os
-
+import dotenv
 import paramiko
 
+dotenv.load_dotenv()
 _domain = os.environ.get("DOMAIN")
 _remote_path_prefix = os.environ.get("UPLOAD_PATH_PREFIX")
 _service_hostname = os.environ.get("SERVICE_HOSTNAME")
@@ -23,7 +24,7 @@ def deploy_nginx(temp_dir):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
     ssh.connect(_service_hostname, _service_port, _service_username, _service_password)
-    ssh.exec_command("docker restart ca3b2c92de11")
+    ssh.exec_command("docker stop ca3b2c92de11")
     ssh.close()
 
 
