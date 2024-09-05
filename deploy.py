@@ -1,14 +1,16 @@
-import os
 import dotenv
 import paramiko
 
+import helper
+
 dotenv.load_dotenv()
-_domain = os.environ.get("DOMAIN")
-_remote_path_prefix = os.environ.get("UPLOAD_PATH_PREFIX")
-_service_hostname = os.environ.get("SERVICE_HOSTNAME")
-_service_port: int = int(os.environ.get("SERVICE_PORT"))
-_service_username = os.environ.get("SERVICE_USERNAME")
-_service_password = os.environ.get("SERVICE_PASSWORD")
+_domain = helper.get_env_var("DOMAIN")
+_remote_path_prefix = helper.get_env_var("UPLOAD_PATH_PREFIX")
+_deploy_nginx_container = helper.get_env_var("DEPLOY_NGINX_CONTAINER")
+_service_hostname = helper.get_env_var("SERVICE_HOSTNAME")
+_service_port: int = int(helper.get_env_var("SERVICE_PORT"))
+_service_username = helper.get_env_var("SERVICE_USERNAME")
+_service_password = helper.get_env_var("SERVICE_PASSWORD")
 
 
 def deploy_nginx(temp_dir):
@@ -24,7 +26,7 @@ def deploy_nginx(temp_dir):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
     ssh.connect(_service_hostname, _service_port, _service_username, _service_password)
-    ssh.exec_command("docker restart ca3b2c92de11")
+    ssh.exec_command("docker restart {}".format(_deploy_nginx_container))
     ssh.close()
 
 

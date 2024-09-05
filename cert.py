@@ -1,20 +1,20 @@
 import base64
 import json
-import os
 import tempfile
 import zipfile
-import deploy
-import dotenv
 
+import dotenv
 from tencentcloud.common import credential
 from tencentcloud.ssl.v20191205 import ssl_client, models
 
+import deploy
+import helper
+
 dotenv.load_dotenv()
 # 环境定义
-_domain = os.environ.get("DOMAIN")
-_tencnet_secret_id = os.environ.get("TENCENT_SECRET_ID")
-_tencnet_secret_key = os.environ.get("TENCENT_SECRET_KEY")
-
+_domain = helper.get_env_var("DOMAIN")
+_tencnet_secret_id = helper.get_env_var("TENCENT_SECRET_ID")
+_tencnet_secret_key = helper.get_env_var("TENCENT_SECRET_KEY")
 _deploy_type = "nginx"
 
 # 腾讯云sdk客户端
