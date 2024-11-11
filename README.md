@@ -8,9 +8,10 @@
 
 1. Nginx使用Docker部署
 2. SSL证书是存放在服务器某个目录上,上传证书后重启Nginx容器即可完成更换证书
-3. 证书名称和域名是一样的
-4. 域名在腾讯云上
-5. 证书也是用的腾讯云的证书(经测试了免费证书)
+3. 需提前新建好存放证书的目录
+4. 证书名称和域名是一样的
+5. 域名在腾讯云上
+6. 证书也是用的腾讯云的证书(经测试了免费证书)
 
 ## 二.使用步骤:
 
@@ -36,7 +37,7 @@ Fork 本仓库后, 在你自己的仓库中,
 | DOMAIN                 | String | xxx.com            | 要部署的域名                |
 | TENCENT_SECRET_ID      | String | xxxxxx             | 第一步申请的secret_id       |
 | TENCENT_SECRET_KEY     | String | xxxxxx             | 第一步申请的secret_key      |
-| UPLOAD_PATH_PREFIX     | String | /docker/Nginx/ssl/ | 证书文件存放路径的前缀,结尾腰带斜杠    |
+| UPLOAD_PATH_PREFIX     | String | /docker/Nginx/ssl/ | 证书文件存放路径的前缀,结尾要带斜杠    |
 | SERVICE_HOSTNAME       | String | 1.1.1.1            | 服务器地址                 |
 | SERVICE_PORT           | int    | 22                 | 服务器端口                 |
 | SERVICE_USERNAME       | String | root               | 服务器登录用户名              |
