@@ -24,8 +24,8 @@ if __name__ == '__main__':
         details = json.loads(cert.get_info(certificate_id))
         time_end = datetime.strptime(details["CertEndTime"], "%Y-%m-%d %H:%M:%S")
         time_diff = time_end - datetime.now()
-        seconds = int(time_diff.total_seconds())
-        print("剩余时间:{}秒".format(seconds))
+        seconds = time_diff.total_seconds()
+        print(f"剩余时间:{time.strftime('%d天%H时%M分%S秒', time.gmtime(seconds))}")
         if time_diff.total_seconds() <= (_countdown * 86400):
             _apply = True
             _deploy = True
