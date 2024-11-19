@@ -36,11 +36,19 @@ if __name__ == '__main__':
         print("申请证书")
         certificate_id = cert.create()
         while True:
-            _cert = cert.get_info(certificate_id)
+            _cert = json.loads(cert.get_info(certificate_id))
+            _status = int(_cert["Status"])
+            _msg = _cert["StatusMsg"]
+            if _status != 0 and _status != 1:
+                print(f"证书审核状态异常,请控制台查看具体情况,状态码:${_status},具体消息:${_msg}")
+            if _status == 0:
+                print("证书审核中,请等待...")
             # 如果证书申请下来了,则跳出死循环,进入下一步,进行证书部署
-            if int(_cert["Status"]) == 1:
+            if _status == 1:
+                print(f"验证通过,证书ID:${certificate_id}")
                 break
-            time.sleep(5 * 1000)
+            time.sleep(5)
+
     if _deploy:
         print("部署证书")
         b64 = json.loads(cert.download(certificate_id))["Content"]
