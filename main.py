@@ -41,6 +41,7 @@ if __name__ == '__main__':
             _msg = _cert["StatusMsg"]
             if _status != 0 and _status != 1:
                 print(f"证书审核状态异常,请控制台查看具体情况,状态码:${_status},具体消息:${_msg}")
+                exit(-1)
             if _status == 0:
                 print("证书审核中,请等待...")
             # 如果证书申请下来了,则跳出死循环,进入下一步,进行证书部署
