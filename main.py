@@ -20,6 +20,7 @@ if __name__ == '__main__':
     if certificate_id is None:
         print("找不到相关证书ID,进行重新申请")
         _apply = True
+        _deploy = True
     else:
         details = json.loads(cert.get_info(certificate_id))
         time_end = datetime.strptime(details["CertEndTime"], "%Y-%m-%d %H:%M:%S")
